@@ -127,7 +127,7 @@ class SearchHomeVC: UIViewController, UISearchBarDelegate {
         
         
         //전달하려는 값을 준다.
-        /*
+        
         dvc.cardName = self.cardNameValue.isOn
         dvc.nickName = self.nickNameValue.isOn
         dvc.memo = self.memoValue.isOn
@@ -136,7 +136,7 @@ class SearchHomeVC: UIViewController, UISearchBarDelegate {
         dvc.restriction = self.restrictionValue.isOn
         dvc.benefit = self.benefitValue.isOn
         dvc.keyWord = self.SearchBar.text
-        */
+        
         
         //네비게이션컨트롤러를 이용한 화면전환 실시
         self.navigationController?.pushViewController(dvc, animated: true)

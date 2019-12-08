@@ -11,7 +11,22 @@ import UIKit
 
 class SearchResultVC: UITableViewController{
 
+    //검색옵션에서 선택한 값들을 넘겨받을 변수를 정의한다
+    var cardName: Bool!
+    var nickName: Bool!
+    var memo: Bool!
+    var condition: Bool!
+    var shop: Bool!
+    var restriction: Bool!
+    var benefit: Bool!
+    //검색창에 입력한 검색어
+    var keyWord: String!
     
+    //디비사용하기 위한 객체 선언
+    let cardDAO = CardDAO()
+    
+    //디비입력을 받으려고 정의한 객체들
+    typealias CardRecord = (Int, String, String?, String?, Int, Int, String?, Int)
     
     override func viewDidLoad() {
         super.viewDidLoad()

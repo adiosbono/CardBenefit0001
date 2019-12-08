@@ -45,9 +45,77 @@ class SearchResultVC: UITableViewController{
     
     //테이블 행의 개수를 결정하는 메소드
     //각각의 섹션에 해당하는 검색결과의 갯수만큼을 return 해야 한다.
-    //우선은 하드코딩해놈
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        switch section {
+        case 0:
+            if self.cardName == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        case 1:
+            if self.nickName == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        case 2:
+            if self.memo == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        case 3:
+            if self.condition == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        case 4:
+            if self.shop == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        case 5:
+            if self.restriction == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        case 6:
+            if self.benefit == true {
+                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
+                print("return 1")
+                return 1
+            }else{
+                print("return 0")
+                return 0
+            }
+        default:
+            print("go default")
+            return 1
+        }
     }
     
     //각행에 어떤녀석들이 들어갈것인지!!

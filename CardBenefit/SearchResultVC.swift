@@ -22,6 +22,31 @@ class SearchResultVC: UITableViewController{
     //검색창에 입력한 검색어
     var keyWord: String!
     
+    
+    //갹 섹션의 갯수가 몇개인지 저장해놀 변수들을 정의하자
+    var cardNameCount: Int!
+    var nickNameCount: Int!
+    var memoCount: Int!
+    var conditionCount: Int!
+    var shopCount: Int!
+    var restrictionCount: Int!
+    var benefitCount: Int!
+    
+    //각 섹션에 들어갈 카드정보를 저장해놀 변수들을 정의하자.
+    var cardNameResults: [CardRecord]!
+    var nickNameResults: [CardRecord]!
+    var memoResults: [CardRecord]!
+        //튜플은 순서대로 카드명, 별칭, 카드사용조건, 카드id, 카드사진임
+    var conditionResults: [(String, String, String, Int, String)]!
+        //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
+    var shopResults: [(String, String, String, String, String, Int, String)]!
+        //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
+    var restrictionResults: [(String, String, String, String, String, Int, String)]!
+    var benefitResults: [(String, String, String, String, String, Int, String)]!
+    
+    
+    
+    
     //디비사용하기 위한 객체 선언
     let cardDAO = CardDAO()
     
@@ -31,7 +56,37 @@ class SearchResultVC: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //넘겨받은 검색조건들에 해당하는 sql문을 실행하고 검색결과를 받는다.
+        //DAO사용해서 데이터를 읽어온다. 읽어온녀석은 위의 변수들에 저장한다.
+        if self.cardName == true {
+            //DAO에서 검색한 값 읽어오기
+            self.cardNameResults = self.cardDAO.searchCardName(keyWord: self.keyWord)
+            //검색결과 개수를 저장한다.
+            self.cardNameCount = self.cardNameResults.count
+        }
+        if self.nickName == true {
+            self.nickNameResults = self.cardDAO.searchNickName(keyWord: self.keyWord)
+            self.nickNameCount = self.nickNameResults.count
+        }
+        if self.memo == true {
+            self.memoResults = self.cardDAO.searchMemo(keyWord: self.keyWord)
+            self.memoCount = self.memoResults.count
+        }
+        if self.condition == true {
+            self.conditionResults = self.cardDAO.searchCondition(keyWord: self.keyWord)
+            self.conditionCount = self.conditionResults.count
+        }
+        if self.shop == true {
+            self.shopResults = self.cardDAO.searchShop(keyWord: self.keyWord)
+            self.shopCount = self.shopResults.count
+        }
+        if self.restriction == true {
+            self.restrictionResults = self.cardDAO.searchRestrict(keyWord: self.keyWord)
+            self.restrictionCount = self.restrictionResults.count
+        }
+        if self.benefit == true {
+            self.benefitResults = self.cardDAO.searchBenefit(keyWord: self.keyWord)
+            self.benefitCount = self.benefitResults.count
+        }
         
     }
     
@@ -51,65 +106,58 @@ class SearchResultVC: UITableViewController{
         switch section {
         case 0:
             if self.cardName == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.cardNameCount
             }else{
-                print("return 0")
+                print("cardName : return 0")
                 return 0
             }
         case 1:
             if self.nickName == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.nickNameCount
             }else{
-                print("return 0")
+                print("nickName : return 0")
                 return 0
             }
         case 2:
             if self.memo == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.memoCount
             }else{
-                print("return 0")
+                print("memo : return 0")
                 return 0
             }
         case 3:
             if self.condition == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.conditionCount
             }else{
-                print("return 0")
+                print("condition : return 0")
                 return 0
             }
         case 4:
             if self.shop == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.shopCount
             }else{
-                print("return 0")
+                print("shop : return 0")
                 return 0
             }
         case 5:
             if self.restriction == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.restrictionCount
             }else{
-                print("return 0")
+                print("restriction : return 0")
                 return 0
             }
         case 6:
             if self.benefit == true {
-                //현재는 테스트해야되니까 1인데 원래는 검색결과갯수만큼 넣어줘야한다
-                print("return 1")
-                return 1
+                
+                return self.benefitCount
             }else{
-                print("return 0")
+                print("benefit : return 0")
                 return 0
             }
         default:

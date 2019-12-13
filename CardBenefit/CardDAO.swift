@@ -378,11 +378,16 @@ class CardDAO {
                     let sql = """
                         SELECT card_id, card_name, image_name, nick_name, transportation, foreign_use, memo, orders
                         FROM main
-                        WHERE card_name LIKE "%?%"
+                        WHERE card_name LIKE ?
                         ORDER BY card_name ASC
         """
                     
-                    let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                //sql문에 ? 로 들어가는 녀석에 원래는 "%?%" 이렇게 넣었었는데 이러케하니까 검색결과가 제대로 안나와서.....해결책은 sql문 밖에서 검색문자열에 %를 붙이고 sql내에는 그냥 ? 하나만 들어가게 하는 거였음!!!
+                    var newKeyWord = "%"
+                    newKeyWord.append(keyWord)
+                    newKeyWord.append("%")
+                    
+                    let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                     //결과 집합 추출
                     while rs.next() {
@@ -412,11 +417,14 @@ class CardDAO {
                         let sql = """
                             SELECT card_id, card_name, image_name, nick_name, transportation, foreign_use, memo, orders
                             FROM main
-                            WHERE nick_name LIKE "%?%"
+                            WHERE nick_name LIKE ?
                             ORDER BY card_name ASC
             """
+                        var newKeyWord = "%"
+                        newKeyWord.append(keyWord)
+                        newKeyWord.append("%")
                         
-                        let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                        let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                         //결과 집합 추출
                         while rs.next() {
@@ -446,11 +454,14 @@ class CardDAO {
                     let sql = """
                         SELECT card_id, card_name, image_name, nick_name, transportation, foreign_use, memo, orders
                         FROM main
-                        WHERE memo LIKE "%?%"
+                        WHERE memo LIKE ?
                         ORDER BY card_name ASC
         """
+                    var newKeyWord = "%"
+                    newKeyWord.append(keyWord)
+                    newKeyWord.append("%")
                     
-                    let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                    let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                     //결과 집합 추출
                     while rs.next() {
@@ -482,12 +493,15 @@ class CardDAO {
                         SELECT main.card_id card_id, main.card_name card_name, main.image_name image_name, main.nick_name nick_name, conditions.condition condition
                         FROM main
                         JOIN conditions ON main.card_id == conditions.card_id
-                        WHERE conditions.condition LIKE "%?%"
+                        WHERE conditions.condition LIKE ?
                         ORDER BY main.card_name
                         
         """
+                    var newKeyWord = "%"
+                    newKeyWord.append(keyWord)
+                    newKeyWord.append("%")
                     
-                    let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                    let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                     //결과 집합 추출
                     while rs.next() {
@@ -518,12 +532,15 @@ class CardDAO {
                             shop_adv_res.restrict
                         FROM main
                         JOIN shop_adv_res ON main.card_id == shop_adv_res.card_id
-                        WHERE shop_adv_res.shop LIKE "%?%"
+                        WHERE shop_adv_res.shop LIKE ?
                         ORDER BY main.card_name
                         
         """
+                    var newKeyWord = "%"
+                    newKeyWord.append(keyWord)
+                    newKeyWord.append("%")
                     
-                    let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                    let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                     //결과 집합 추출
                     while rs.next() {
@@ -555,12 +572,15 @@ class CardDAO {
                             shop_adv_res.restrict
                         FROM main
                         JOIN shop_adv_res ON main.card_id == shop_adv_res.card_id
-                        WHERE shop_adv_res.advantage LIKE "%?%"
+                        WHERE shop_adv_res.advantage LIKE ?
                         ORDER BY main.card_name
                         
         """
+                    var newKeyWord = "%"
+                    newKeyWord.append(keyWord)
+                    newKeyWord.append("%")
                     
-                    let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                    let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                     //결과 집합 추출
                     while rs.next() {
@@ -592,12 +612,15 @@ class CardDAO {
                             shop_adv_res.restrict
                         FROM main
                         JOIN shop_adv_res ON main.card_id == shop_adv_res.card_id
-                        WHERE shop_adv_res.restrict LIKE "%?%"
+                        WHERE shop_adv_res.restrict LIKE ?
                         ORDER BY main.card_name
                         
         """
+                    var newKeyWord = "%"
+                    newKeyWord.append(keyWord)
+                    newKeyWord.append("%")
                     
-                    let rs = try self.fmdb.executeQuery(sql, values: [keyWord])
+                    let rs = try self.fmdb.executeQuery(sql, values: [newKeyWord])
 
                     //결과 집합 추출
                     while rs.next() {

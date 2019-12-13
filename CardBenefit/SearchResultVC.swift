@@ -24,13 +24,13 @@ class SearchResultVC: UITableViewController{
     
     
     //갹 섹션의 갯수가 몇개인지 저장해놀 변수들을 정의하자
-    var cardNameCount: Int!
-    var nickNameCount: Int!
-    var memoCount: Int!
-    var conditionCount: Int!
-    var shopCount: Int!
-    var restrictionCount: Int!
-    var benefitCount: Int!
+    var cardNameCount: Int = 0
+    var nickNameCount: Int = 0
+    var memoCount: Int = 0
+    var conditionCount: Int = 0
+    var shopCount: Int = 0
+    var restrictionCount: Int = 0
+    var benefitCount: Int = 0
     
     //각 섹션에 들어갈 카드정보를 저장해놀 변수들을 정의하자.
     var cardNameResults: [CardRecord]!
@@ -62,30 +62,45 @@ class SearchResultVC: UITableViewController{
             self.cardNameResults = self.cardDAO.searchCardName(keyWord: self.keyWord)
             //검색결과 개수를 저장한다.
             self.cardNameCount = self.cardNameResults.count
+            //잘 되고 있는가 체크하기 위해서 적어놈
+            print("cardNameCount = \(self.cardNameCount)")
         }
         if self.nickName == true {
             self.nickNameResults = self.cardDAO.searchNickName(keyWord: self.keyWord)
             self.nickNameCount = self.nickNameResults.count
+            
+            print("nickNameCount = \(self.nickNameCount)")
+            
         }
         if self.memo == true {
             self.memoResults = self.cardDAO.searchMemo(keyWord: self.keyWord)
             self.memoCount = self.memoResults.count
+            
+            print("memoCount = \(self.memoCount)")
         }
         if self.condition == true {
             self.conditionResults = self.cardDAO.searchCondition(keyWord: self.keyWord)
             self.conditionCount = self.conditionResults.count
+            
+            print("conditionCount = \(self.conditionCount)")
         }
         if self.shop == true {
             self.shopResults = self.cardDAO.searchShop(keyWord: self.keyWord)
             self.shopCount = self.shopResults.count
+            
+            print("shopCount = \(self.shopCount)")
         }
         if self.restriction == true {
             self.restrictionResults = self.cardDAO.searchRestrict(keyWord: self.keyWord)
             self.restrictionCount = self.restrictionResults.count
+            
+            print("restrictionCount = \(self.restrictionCount)")
         }
         if self.benefit == true {
             self.benefitResults = self.cardDAO.searchBenefit(keyWord: self.keyWord)
             self.benefitCount = self.benefitResults.count
+            
+            print("benefitCount = \(self.benefitCount)")
         }
         
     }

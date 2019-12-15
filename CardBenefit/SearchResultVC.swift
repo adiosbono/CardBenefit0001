@@ -42,6 +42,7 @@ class SearchResultVC: UITableViewController{
     var shopResults: [(String, String, String, String, String, Int, String)]!
         //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
     var restrictionResults: [(String, String, String, String, String, Int, String)]!
+        //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
     var benefitResults: [(String, String, String, String, String, Int, String)]!
     
     
@@ -189,24 +190,99 @@ class SearchResultVC: UITableViewController{
             
             //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
             
+            //db에서 읽어온 데이터중 행에 맞는녀석을 뽑아온다
+            //들어있는순서대로 cardId, cardName, image, nickName, traffic, oversea, memo, orders
+            let rowData = self.cardNameResults[indexPath.row]
+            //cell안에 데이터를 집어넣는다.
+                //cardImage는 구현후 집어넣는걸로 하자 ㅜㅜ
+            
+            //cardName의 tag속성에 cardId값을 집어넣는다.
+            cell.cardName.tag = rowData.0
+            cell.cardName.text = rowData.1
+            cell.nickName.text = rowData.3
+            cell.traffic.text = "\(rowData.4)"
+            cell.oversea.text = "\(rowData.5)"
+ 
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultNickNameCell") as! ResultNickNameCell
+            
+            let rowData = self.nickNameResults[indexPath.row]
+            
+            
+            cell.cardName.tag = rowData.0
+            cell.nickName.text = rowData.3
+            cell.cardName.text = rowData.1
+            cell.traffic.text = "\(rowData.4)"
+            cell.oversea.text = "\(rowData.5)"
+ 
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultMemoCell") as! ResultMemoCell
+            
+            let rowData = self.nickNameResults[indexPath.row]
+            
+            
+            cell.cardName.tag = rowData.0
+            cell.nickName.text = rowData.3
+            cell.cardName.text = rowData.1
+            cell.memo.text = rowData.6
+ 
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultConditionCell") as! ResultConditionCell
+            
+            //튜플은 순서대로 카드명, 별칭, 카드사용조건, 카드id, 카드사진임
+            let rowData = self.conditionResults[indexPath.row]
+            
+            
+            let nameWithNickName = "\(rowData.0), \(rowData.1)"
+            //여기에는 cardName 대신 cardNameWithNickName에 태그속성에 cardId를 넣는다
+            cell.cardNameWithNickName.tag = rowData.3
+            cell.cardNameWithNickName.text = nameWithNickName
+            cell.condition.text = rowData.2
+ 
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultShopCell") as! ResultShopCell
+            
+            //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
+            let rowData = self.shopResults[indexPath.row]
+            
+            
+            let nameWithNickName = "\(rowData.0), \(rowData.1)"
+            cell.cardNameWithNickName.tag = rowData.5
+            cell.cardNameWithNickName.text = nameWithNickName
+            let sar = "\(rowData.2), \(rowData.3), \(rowData.4)"
+            cell.SAR.text = sar
+ 
             return cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultBenefitCell") as! ResultBenefitCell
+            
+            //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
+            let rowData = self.benefitResults[indexPath.row]
+            
+            
+            let nameWithNickName = "\(rowData.0), \(rowData.1)"
+            cell.cardNameWithNickName.tag = rowData.5
+            cell.cardNameWithNickName.text = nameWithNickName
+            let asr = "\(rowData.3), \(rowData.2), \(rowData.4)"
+            cell.ASR.text = asr
+ 
             return cell
         case 6:
             let cell = tableView.dequeueReusableCell(withIdentifier: "resultRestrictionCell") as! ResultRestrictionCell
+            
+            //튜플 순서대로 카드명, 별칭, 상점명, 혜택, 제약, 카드id, 카드사진
+            let rowData = self.restrictionResults[indexPath.row]
+            
+            let nameWithNickName = "\(rowData.0), \(rowData.1)"
+            cell.cardNameWithNickName.tag = rowData.5
+            cell.cardNameWithNickName.text = nameWithNickName
+            let rsa = "\(rowData.4), \(rowData.2), \(rowData.3)"
+            cell.RSA.text = rsa
+ 
             return cell
         default:
             //그냥 쓸거없어서 카드이름으로 찾는녀석으로해놈

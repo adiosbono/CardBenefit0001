@@ -11,4 +11,7 @@ import UIKit
 
 class ResultBenefitCell : UITableViewCell {
     
+    @IBOutlet var cardImage: UIImageView?
+    @IBOutlet var cardNameWithNickName: UILabel!
+    @IBOutlet var ASR: UILabel!
 }

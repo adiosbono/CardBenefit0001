@@ -11,4 +11,8 @@ import UIKit
 
 class ResultShopCell : UITableViewCell {
     
+
+    @IBOutlet var cardImage: UIImageView?
+    @IBOutlet var cardNameWithNickName: UILabel!
+    @IBOutlet var SAR: UILabel!
 }

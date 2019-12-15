@@ -11,4 +11,8 @@ import UIKit
 
 class ResultRestrictionCell : UITableViewCell {
     
+    
+    @IBOutlet var cardImage: UIImageView?
+    @IBOutlet var cardNameWithNickName: UILabel!
+    @IBOutlet var RSA: UILabel!
 }

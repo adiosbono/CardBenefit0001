@@ -11,4 +11,7 @@ import UIKit
 
 class ResultConditionCell : UITableViewCell {
     
+    @IBOutlet var cardImage: UIImageView?
+    @IBOutlet var cardNameWithNickName: UILabel!
+    @IBOutlet var condition: UILabel!
 }

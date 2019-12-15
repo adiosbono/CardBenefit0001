@@ -11,4 +11,8 @@ import UIKit
 
 class ResultMemoCell : UITableViewCell {
     
+    @IBOutlet var cardImage: UIImageView?
+    @IBOutlet var cardName: UILabel!
+    @IBOutlet var nickName: UILabel!
+    @IBOutlet var memo: UITextView!
 }

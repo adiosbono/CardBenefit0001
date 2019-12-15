@@ -11,4 +11,10 @@ import UIKit
 
 class ResultNameCell : UITableViewCell {
     
+    
+    @IBOutlet var cardImage: UIImageView?
+    @IBOutlet var cardName: UILabel!
+    @IBOutlet var nickName: UILabel!
+    @IBOutlet var traffic: UILabel!
+    @IBOutlet var oversea: UILabel!
 }
